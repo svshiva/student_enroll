@@ -1,5 +1,8 @@
+// initially calling the function to show saved data
 showData();
-function foo() {
+
+// this function create data from form input
+function createData() {
     var x = document.getElementById("stu_form")
     var name = x.name.value;
     var email = x.email.value;
@@ -33,7 +36,7 @@ function foo() {
         <td><center><img  src=${img} style="width:100px;height:100px;"/><center></td>
     </tr>
     `
-
+    // saving data to local storage
     let getLs = localStorage.getItem("stu_list");
     if (getLs == null) {
         arr = [];
@@ -43,14 +46,21 @@ function foo() {
     }
     arr.push(newData)
     localStorage.setItem("stu_list", JSON.stringify(arr));
+
+    //calling show data to display updated data
     showData();
     document.getElementById("stu_form").reset();
 }
+
+// function to display all the data
 function showData() {
     let getLs = localStorage.getItem("stu_list");
-    if (getLs == null) { listarr = []; }
+    console.log(getLs)
+    if (getLs == null || getLs == '[]') { listarr = [];document.getElementById('display').style.display = 'none'; return;
+        }
     else {
         listarr = JSON.parse(getLs);
+        document.getElementById('display').style.display = 'block';
     }
     let newData = '';
 
@@ -61,6 +71,8 @@ function showData() {
     td.innerHTML = newData;
 
 }
+
+//function to remove all user data
 function clearData(){
     localStorage.setItem('stu_list',JSON.stringify([]))
     showData();
