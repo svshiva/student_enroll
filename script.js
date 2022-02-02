@@ -55,7 +55,6 @@ function createData() {
 // function to display all the data
 function showData() {
     let getLs = localStorage.getItem("stu_list");
-    console.log(getLs)
     if (getLs == null || getLs == '[]') { listarr = [];document.getElementById('display').style.display = 'none'; return;
         }
     else {
